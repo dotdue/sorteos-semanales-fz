@@ -1,3 +1,7 @@
+### Compilado en GM EvertZone, MySQL plugin R39-4
+### Necesario nivel básico de Pawn
+![screenshot](https://github.com/dotdue/sorteos-semanales-fz/blob/main/screenshot.png?raw=true)
+
 # SQL
 Crear una columna en la tabla `usuarios` para guardar el tiempo jugado.
 ```sql
