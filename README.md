@@ -126,6 +126,12 @@ Drawing_Winners()
 
     mysql_tquery(db_handle, "UPDATE `usuarios` SET `weekly_playtime_seconds` = 0;");
     mysql_tquery(db_handle, "SELECT `user_id` FROM `users_weekly_draw`;", "OnQueryDrawing", "i", QUERY_DRAWING_GET_WINNERS);
+
+    foreach (new playerid : Player)
+    {
+        if (JugadorLogeado[playerid])
+            g_PlayerPlayingTime[playerid] = gettime();
+    }
     return 1;
 }
 
