@@ -61,8 +61,8 @@ public OnPlayerSpawn(playerid)
 {
     if (PrimerSpawn[playerid] == 0)
     {
-        static query[138];
-        mysql_format(db_handle, query, sizeof query, "SELECT ROW_NUMBER() OVER (ORDER BY `user_id`) AS `type` FROM `users_weekly_draw` WHERE `user_id` = %i AND `prize_received` = 0;", PlayerInfo[playerid][pID]);
+        static query[148];
+        mysql_format(db_handle, query, sizeof query, "SELECT `user_id` FROM `users_weekly_draw` WHERE EXISTS (SELECT 1 FROM `users_weekly_draw` WHERE `user_id` = %i AND `prize_received` = 0);", PlayerInfo[playerid][pID]);
         mysql_tquery(db_handle, query, "OnQueryDrawing", "ii", QUERY_DRAWING_WINNER_GIVE_PRIZE, playerid);
 
         g_PlayerPlayingTime[playerid] = gettime();
@@ -194,9 +194,16 @@ public OnQueryDrawing(params, extraid)
         }
         case QUERY_DRAWING_WINNER_GIVE_PRIZE:
         {
-            if (cache_num_rows())
+            new
+                const rows = cache_num_rows();
+
+            for (new row; row < rows; row++)
             {
-                Drawing_GivePrize(extraid, cache_get_row_int(0, 0));
+                if (cache_get_row_int(row, 0) == PlayerInfo[playerid][ID])
+                {
+                    Drawing_GivePrize(extraid, row + 1);
+                    break;
+                }
             }
         }
     }
