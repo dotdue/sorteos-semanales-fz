@@ -75,7 +75,7 @@ public OnPlayerDisconnect(playerid)
     if (JugadorLogeado[playerid] == 1)
     {
         static query[118];
-        mysql_format(db_handle, query, sizeof query, "UPDATE `usuarios` SET `weekly_playtime_seconds` = `weekly_playtime_seconds` + %i WHERE `ID` = %i;", PlayerInfo[playerid][pID], gettime() - g_PlayerPlayingTime[playerid]);
+        mysql_format(db_handle, query, sizeof query, "UPDATE `usuarios` SET `weekly_playtime_seconds` = `weekly_playtime_seconds` + %i WHERE `ID` = %i;", gettime() - g_PlayerPlayingTime[playerid], PlayerInfo[playerid][pID]);
         mysql_tquery(db_handle, query, "OnQueryDrawing");
 
         g_PlayerPlayingTime[playerid] = 0;
@@ -199,7 +199,10 @@ public OnQueryDrawing(params, extraid)
 
             for (new row; row < rows; row++)
             {
-                if (cache_get_row_int(row, 0) == PlayerInfo[playerid][ID])
+                if (!IsPlayerConnected(extraid))
+                    break;
+
+                if (cache_get_row_int(row, 0) == PlayerInfo[extraid][pID])
                 {
                     Drawing_GivePrize(extraid, row + 1);
                     break;
