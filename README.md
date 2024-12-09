@@ -1,6 +1,8 @@
 ## Discord: `@dois.`
-### Compilado en GM EvertZone, MySQL plugin R39-4
-### Necesario nivel básico de Pawn
+Compilado en GM EvertZone, MySQL plugin R39-4
+
+Necesario nivel básico de Pawn.
+
 ![screenshot](https://github.com/dotdue/sorteos-semanales-fz/blob/main/screenshot.png?raw=true)
 
 # SQL
