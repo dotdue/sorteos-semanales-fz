@@ -25,7 +25,7 @@ Cuando ocurra, se sumarán 7 días (una semana) para que el sorteo ocurra nuevam
 Ejemplo: 14/12/2024 (Sábado de diciembre)  
 El sorteo ocurrirá en esa fecha y luego el 21/12/2024 (Sábado de diciembre, 7 días después de la fecha anterior).
 ```sql
-UPDATE `server_settings` SET `draw_date`='2024-12-14';
+INSERT INTO `server_settings` (`draw_date`) VALUES ('2024-12-14');
 ```
 
 # Pawn
