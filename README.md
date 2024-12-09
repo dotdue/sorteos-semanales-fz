@@ -62,7 +62,7 @@ public OnPlayerSpawn(playerid)
     {
         static query[235];
         mysql_format(db_handle, query, sizeof query, "SELECT ROW_NUMBER() OVER (ORDER BY `user_id`) AS `type` FROM `users_weekly_drawuser_id = %i AND prize_received = 0;", PlayerInfo[playerid][pID]);
-        mysql_tquery(db_handle, query, "OnQueryDrawing", "ii", QUERY_DRAWING_SEARCH_WINNER, playerid);
+        mysql_tquery(db_handle, query, "OnQueryDrawing", "ii", QUERY_DRAWING_WINNER_GIVE_PRIZE, playerid);
 
         g_PlayerPlayingTime[playerid] = gettime();
     }
@@ -142,7 +142,7 @@ Drawing_GivePrize(playerid, prize)
 
     switch (prize)
     {
-        case 1: PlayerInfo[playerid][Totems] += 3";
+        case 1: PlayerInfo[playerid][Totems] += 3;
         case 2: PlayerInfo[playerid][Totems] += 2;
         case 3: PlayerInfo[playerid][Moneda] += 15;
         case 4: PlayerInfo[playerid][Moneda] += 10;
