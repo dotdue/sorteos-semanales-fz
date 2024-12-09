@@ -1,4 +1,3 @@
-## Discord: `@dois.`
 Compilado en GM EvertZone, MySQL plugin R39-4
 
 Necesario nivel básico de Pawn.
