@@ -61,8 +61,8 @@ public OnPlayerSpawn(playerid)
 {
     if (PrimerSpawn[playerid] == 0)
     {
-        static query[229];
-        mysql_format(db_handle, query, sizeof query, "SELECT ROW_NUMBER() OVER (ORDER BY `user_id`) AS `type` FROM `users_weekly_drawuser_id` = %i AND `prize_received` = 0;", PlayerInfo[playerid][pID]);
+        static query[138];
+        mysql_format(db_handle, query, sizeof query, "SELECT ROW_NUMBER() OVER (ORDER BY `user_id`) AS `type` FROM `users_weekly_draw` WHERE `user_id` = %i AND `prize_received` = 0;", PlayerInfo[playerid][pID]);
         mysql_tquery(db_handle, query, "OnQueryDrawing", "ii", QUERY_DRAWING_WINNER_GIVE_PRIZE, playerid);
 
         g_PlayerPlayingTime[playerid] = gettime();
